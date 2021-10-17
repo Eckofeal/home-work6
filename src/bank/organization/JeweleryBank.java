@@ -12,23 +12,28 @@ import java.util.Map;
 
 public class JeweleryBank<T extends Value> extends Organization {
 
-    private HashMap<Client, Contribution<T>> contributions;
+    private Map<Client, Contribution<T>> contributions;
 
     public JeweleryBank(String nameOfBank, Address address, LocalDateTime foundedAt) {
         super(nameOfBank, address, foundedAt);
-        this.contributions = new HashMap<>();
     }
 
-    public HashMap<Client, Contribution<T>> getContributions() {
+    public Map<Client, Contribution<T>> getContributions() {
         return contributions;
     }
 
-    public void setContributions(HashMap<Client, Contribution<T>> contributions) {
+    public void setContributions(Map<Client, Contribution<T>> contributions) {
         this.contributions = contributions;
     }
 
     public void addContribution(Client client, Contribution<T> contribution) {
-        this.contributions.put(client, contribution);
+        if(contributions == null) {
+            this.contributions = new HashMap<>();
+            this.contributions.put(client, contribution);
+        } else {
+            this.contributions.put(client, contribution);
+        }
+
     }
 
     public Contribution<T> findContribution(Client client) {
