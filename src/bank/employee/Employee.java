@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Employee extends Human implements Printable {
 
     public static int count = 0;
-    private Currency salary;
-    private String position;
+    private final Currency salary;
+    private final String position;
 
     public Employee(String firstName, String lastName, LocalDateTime birthDay, String position, Currency salary) throws InvalidHumanDataException {
         super(firstName, lastName, birthDay);

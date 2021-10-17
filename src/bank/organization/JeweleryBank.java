@@ -23,6 +23,10 @@ public class JeweleryBank<T extends Value> extends Organization {
         return contributions;
     }
 
+    public void setContributions(HashMap<Client, Contribution<T>> contributions) {
+        this.contributions = contributions;
+    }
+
     public void addContribution(Client client, Contribution<T> contribution) {
         contributions.put(client, contribution);
     }

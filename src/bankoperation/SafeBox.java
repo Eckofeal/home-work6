@@ -4,15 +4,14 @@ import bank.currency.Currency;
 import bank.currency.Value;
 import print.Printable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class SafeBox<T extends Value> implements Printable {
 
-    private T deposit;
-    private LocalDate opened;
-    private int storageTimeInMonth;
-    private LocalDate closed;
+    private final T deposit;
+    private final LocalDate opened;
+    private final int storageTimeInMonth;
+    private final LocalDate closed;
     private Currency pricePerMonth = new Currency(100, Currency.USD);
 
     public SafeBox(T deposit, int storageTimeInMonth) {

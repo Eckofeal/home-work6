@@ -128,9 +128,7 @@ public class MainClass {
             //if client less than 18 years old, or more than 100 (calculations are in "year" parameter), program will throw InvalidClientAge exception ( unchecked runtime exception ).
             //if client less than 0 years old, or more than 150 (calculations are in "year" parameter), program will throw InvalidHumanData exception ( checked exception ).
             client3 = new Client("Fil", "Flinn", LocalDateTime.of(2024, Month.NOVEMBER, 7, 3, 41), work3);
-        } catch (InvalidHumanDataException exception) {
-            LOGGER.error(exception.getMessage());
-        } catch (InvalidClientAgeException exception) {
+        } catch (InvalidHumanDataException | InvalidClientAgeException exception) {
             LOGGER.error(exception.getMessage());
         } finally {
             if (client1 != null) {
@@ -205,9 +203,7 @@ public class MainClass {
             client4 = new Client("Bill", "Milligan", LocalDateTime.of(1991, Month.DECEMBER, 1, 12, 44), work4);
             client5 = new Client("Alisha", "Willis", LocalDateTime.of(1989, Month.FEBRUARY, 23, 16, 11), work5);
             client6 = new Client("Richard", "Forester", LocalDateTime.of(1977, Month.AUGUST, 29, 4, 3), work6);
-        } catch (InvalidHumanDataException exception) {
-            LOGGER.error(exception.getMessage());
-        } catch (InvalidClientAgeException exception) {
+        } catch (InvalidHumanDataException | InvalidClientAgeException exception) {
             LOGGER.error(exception.getMessage());
         } finally {
             if (client4 != null) {
@@ -250,8 +246,7 @@ public class MainClass {
 
         System.out.println("\n\n/////////////////////////////////SEVENTH////////////////////////////\n\n");
         creditBank1.add(credit4);
-        List<BankOperation> operations2 = new ArrayList<>();
-        operations2.addAll(creditBank1.getCredits());
+        List<BankOperation> operations2 = new ArrayList<>(creditBank1.getCredits());
         /*printOperations(operations2);*/
 
         System.out.println("\n\n/////////////////////////////////EIGHTH////////////////////////////\n\n");
@@ -263,9 +258,7 @@ public class MainClass {
         Client client7 = null;
         try {
             client7 = new Client("Mick", "Flick", LocalDateTime.of(2001, Month.JANUARY, 14, 1, 15), work7);
-        } catch (InvalidHumanDataException exception) {
-            LOGGER.error(exception.getMessage());
-        } catch (InvalidClientAgeException exception) {
+        } catch (InvalidHumanDataException | InvalidClientAgeException exception) {
             LOGGER.error(exception.getMessage());
         } finally {
             if (client7 != null) {
@@ -333,9 +326,7 @@ public class MainClass {
         Client client8 = null;
         try {
             client8 = new Client("Felix", "Irvin", LocalDateTime.of(2003, Month.FEBRUARY, 12, 14, 43), work8);
-        } catch (InvalidHumanDataException exception) {
-            LOGGER.error(exception.getMessage());
-        } catch (InvalidClientAgeException exception) {
+        } catch (InvalidHumanDataException | InvalidClientAgeException exception) {
             LOGGER.error(exception.getMessage());
         } finally {
             if (client8 != null) {
@@ -419,7 +410,7 @@ public class MainClass {
                     LocalDateTime.of(1992, Month.OCTOBER, 7, 16, 41),
                     "Trader", new Currency(5000, Currency.USD));
             Employee employee3 = new Employee("Max", "Pax",
-                    LocalDateTime.of(1995, Month.NOVEMBER, 14, 18, 06),
+                    LocalDateTime.of(1995, Month.NOVEMBER, 14, 18, 6),
                     "Broker", new Currency(20000, Currency.USD));
             creditBank1.addEmployee(employee1);
             creditBank1.addEmployee(employee2);

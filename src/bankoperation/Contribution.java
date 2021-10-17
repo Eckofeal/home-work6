@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Contribution<T extends Value> implements Printable {
 
-    private T invested;
+    private final T invested;
     private final double yearPercent = 0.12;
     private final int termInYears = 2;
     private T returned;
@@ -71,8 +71,7 @@ public class Contribution<T extends Value> implements Printable {
             return false;
         }
         Contribution<T> contribution = (Contribution<T>) object;
-        return invested.equals(contribution.getInvested()) && returned.equals(contribution.getInvested())
-                && yearPercent == contribution.yearPercent && termInYears == contribution.termInYears;
+        return invested.equals(contribution.getInvested()) && returned.equals(contribution.getInvested());
     }
 
     @Override
