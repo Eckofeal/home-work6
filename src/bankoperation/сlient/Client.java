@@ -34,7 +34,7 @@ public class Client extends Human {
     public void print() {
         System.out.println("Client:");
         super.print();
-        work.print();
+        this.work.print();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class JeweleryBank<T extends Value> extends Organization {
 
     public JeweleryBank(String nameOfBank, Address address, LocalDateTime foundedAt) {
         super(nameOfBank, address, foundedAt);
-        contributions = new HashMap<>();
+        this.contributions = new HashMap<>();
     }
 
     public HashMap<Client, Contribution<T>> getContributions() {
@@ -28,20 +28,20 @@ public class JeweleryBank<T extends Value> extends Organization {
     }
 
     public void addContribution(Client client, Contribution<T> contribution) {
-        contributions.put(client, contribution);
+        this.contributions.put(client, contribution);
     }
 
     public Contribution<T> findContribution(Client client) {
-        return contributions.get(client);
+        return this.contributions.get(client);
     }
 
     public Contribution<T> removeContribution(Client client) {
-        return contributions.remove(client);
+        return this.contributions.remove(client);
     }
 
     public double amountOfDeposits() {
         double resultAmount = 0;
-        for (Map.Entry<Client,Contribution<T>> entry : contributions.entrySet()) {
+        for (Map.Entry<Client,Contribution<T>> entry : this.contributions.entrySet()) {
             if(entry.getValue().getInvested().getValue().getType().equals(Currency.USD)) {
                 resultAmount += entry.getValue().getInvested().getValue().getAmount();
             } else if(entry.getValue().getInvested().getValue().getType().equals(Currency.EURO)) {

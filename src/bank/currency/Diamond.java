@@ -65,11 +65,11 @@ public class Diamond extends Value {
     @Override
     public Currency getValue() {
         double clarityCoefficient;
-        if (clarity == 'A') {
+        if (this.clarity == 'A') {
             clarityCoefficient = 1.5;
-        } else if (clarity == 'B') {
+        } else if (this.clarity == 'B') {
             clarityCoefficient = 1.3;
-        } else if (clarity == 'C') {
+        } else if (this.clarity == 'C') {
             clarityCoefficient = 1.1;
         } else {
             clarityCoefficient = 1;
@@ -80,11 +80,11 @@ public class Diamond extends Value {
     @Override
     public void setValue(Currency currency) {
         double clarityCoefficient;
-        if (clarity == 'A') {
+        if (this.clarity == 'A') {
             clarityCoefficient = 1.5;
-        } else if (clarity == 'B') {
+        } else if (this.clarity == 'B') {
             clarityCoefficient = 1.3;
-        } else if (clarity == 'C') {
+        } else if (this.clarity == 'C') {
             clarityCoefficient = 1.1;
         } else {
             clarityCoefficient = 1;
@@ -100,21 +100,21 @@ public class Diamond extends Value {
     public void copy(Value value) {
         if(value instanceof Diamond) {
             Diamond diamond = (Diamond) value;
-            carats = diamond.getCarats();
-            pricePerCarat = diamond.getPricePerCarat();
-            color = diamond.getColor();
-            clarity = diamond.getClarity();
+            this.carats = diamond.getCarats();
+            this.pricePerCarat = diamond.getPricePerCarat();
+            this.color = diamond.getColor();
+            this.clarity = diamond.getClarity();
         }
     }
 
     @Override
     public void print() {
         double clarityCoefficient;
-        if (clarity == 'A') {
+        if (this.clarity == 'A') {
             clarityCoefficient = 1.5;
-        } else if (clarity == 'B') {
+        } else if (this.clarity == 'B') {
             clarityCoefficient = 1.3;
-        } else if (clarity == 'C') {
+        } else if (this.clarity == 'C') {
             clarityCoefficient = 1.1;
         } else {
             clarityCoefficient = 1;

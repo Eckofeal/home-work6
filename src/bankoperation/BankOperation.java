@@ -15,9 +15,9 @@ public abstract class BankOperation implements Printable {
 
     public BankOperation(Client client) {
         this.client = client;
-        issued = new Date();
-        expired = new Date();
-        expired.setTime(issued.getTime());
+        this.issued = new Date();
+        this.expired = new Date();
+        this.expired.setTime(this.issued.getTime());
     }
 
     public Client getClient() {
@@ -48,15 +48,15 @@ public abstract class BankOperation implements Printable {
             return false;
         }
         BankOperation bankOperation = (BankOperation) object;
-        return client.equals(bankOperation.getClient())
-                && (issued.getDate() == bankOperation.getIssued().getDate())
-                && (issued.getMonth() == bankOperation.getIssued().getMonth())
-                && (issued.getYear() == bankOperation.getIssued().getYear())
-                && (issued.getTime() == bankOperation.getIssued().getTime())
-                && (expired.getDate() == bankOperation.getExpired().getDate())
-                && (expired.getMonth() == bankOperation.getExpired().getMonth())
-                && (expired.getYear() == bankOperation.getExpired().getYear())
-                && (expired.getTime() == bankOperation.getExpired().getTime());
+        return this.client.equals(bankOperation.getClient())
+                && (this.issued.getDate() == bankOperation.getIssued().getDate())
+                && (this.issued.getMonth() == bankOperation.getIssued().getMonth())
+                && (this.issued.getYear() == bankOperation.getIssued().getYear())
+                && (this.issued.getTime() == bankOperation.getIssued().getTime())
+                && (this.expired.getDate() == bankOperation.getExpired().getDate())
+                && (this.expired.getMonth() == bankOperation.getExpired().getMonth())
+                && (this.expired.getYear() == bankOperation.getExpired().getYear())
+                && (this.expired.getTime() == bankOperation.getExpired().getTime());
     }
 
     @Override

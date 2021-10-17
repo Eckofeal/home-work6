@@ -21,7 +21,7 @@ public class CreditType implements Printable {
         this.termInYears = termInYears;
         this.minMoneyAmount = minMoneyAmount;
         this.maxMoneyAmount = maxMoneyAmount;
-        count++;
+        this.count++;
     }
 
     public void setCreditName(String creditName) {

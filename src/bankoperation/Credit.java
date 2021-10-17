@@ -20,11 +20,11 @@ public class Credit extends BankOperation {
         super(client);
         this.creditType = creditType;
         super.getExpired().setYear(super.getExpired().getYear() + creditType.getTermInYears());
-        givenMoneyAmount = moneyAmount;
-        backMoneyAmount = givenMoneyAmount + (givenMoneyAmount * creditType.getTermInYears() * (creditType.getYearPercent() / 100));
-        monthlyPayment = backMoneyAmount / (this.creditType.getTermInYears() * 12);
-        moneyType = creditType.getMoneyType();
-        count++;
+        this.givenMoneyAmount = moneyAmount;
+        this.backMoneyAmount = this.givenMoneyAmount + (this.givenMoneyAmount * creditType.getTermInYears() * (creditType.getYearPercent() / 100));
+        this.monthlyPayment = this.backMoneyAmount / (this.creditType.getTermInYears() * 12);
+        this.moneyType = creditType.getMoneyType();
+        this.count++;
     }
 
     public CreditType getCreditType() {

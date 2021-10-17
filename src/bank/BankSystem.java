@@ -32,11 +32,11 @@ public class BankSystem extends Organization implements Findable {
         if (bank == null) {
             return;
         }
-        if (banks == null) {
-            banks = new ArrayList<>();
+        if (this.banks == null) {
+            this.banks = new ArrayList<>();
         }
-        if (!banks.contains(bank)) {
-            banks.add(bank);
+        if (!this.banks.contains(bank)) {
+            this.banks.add(bank);
         } else {
             System.out.println("Bank already exist.");
         }
@@ -46,130 +46,29 @@ public class BankSystem extends Organization implements Findable {
         if (bank == null || banks == null || banks.isEmpty()) {
             return false;
         }
-        return banks.remove(bank);
+        return this.banks.remove(bank);
     }
-
-    /*private Bank[] addAlgorithm(Bank bank) {
-        if (bank == null) {
-            return banks;
-        }
-        Bank[] result;
-        if (banks == null) {
-            result = new Bank[1];
-            result[0] = bank;
-        } else {
-            result = new Bank[banks.length + 1];
-            result = unionAlgorithm(banks, result, bank);
-        }
-        return result;
-    }
-
-    private Bank[] removeAlgorithm(Bank bank) {
-        Bank[] result = new Bank[banks.length - 1];
-        int index = indexOfBank(bank);
-        for (int i = 0, j = 0; i < banks.length; i++, j++) {
-            if (i == index) {
-                j--;
-            } else {
-                result[j] = banks[i];
-            }
-        }
-        return result;
-    }
-
-    private Bank[] unionAlgorithm(Bank[] copyThis, Bank[] intoThis, Bank thenInsertThis) {
-        for (int i = 0; i < intoThis.length; i++) {
-            if (i != intoThis.length - 1) {
-                intoThis[i] = copyThis[i];
-            } else {
-                intoThis[i] = thenInsertThis;
-            }
-        }
-        return intoThis;
-    }
-
-    private int indexOfBank(Bank bank) {
-        int result = -1;
-        if (banks.length != 0) {
-            int flag = 0;
-            for (int i = 0; i < banks.length; i++) {
-                flag++;
-                if (banks[i].equals(bank)) {
-                    result = i;
-                    return result;
-                }
-            }
-            if (flag == banks.length) {
-                result = -1;
-            }
-        } else {
-            result = -1;
-        }
-        return result;
-    }*/
-
-    /*public BankOperation[] searchOperation(Human human) {
-        BankOperation[] result = null;
-        if (human == null) {
-            return null;
-        }
-        if (banks != null && banks.length > 0) {
-            result = new BankOperation[0];
-            for (Bank element : banks) {
-                result = union(result, element.findOperation(human));
-            }
-        }
-        return result;
-    }*/
 
     @Override
     public List<BankOperation> find(Human human) {
-        /*BankOperation[] result = null;*/
         List<BankOperation> result = null;
         if (human == null) {
             return null;
         }
-        if (banks != null && banks.size() > 0) {
-            /*result = new BankOperation[0];*/
+        if (this.banks != null && this.banks.size() > 0) {
             result = new ArrayList<>();
-            for (Bank element : banks) {
-                /*result = union(result, element.find(human));*/
+            for (Bank element : this.banks) {
                 result.addAll(element.find(human));
             }
         }
         return result;
     }
 
-    /*private List<BankOperation> union(List<BankOperation> base, List<BankOperation> copied) {
-        if (copied == null || copied.length == 0) {
-            return base;
-        }
-        BankOperation[] result;
-        if (base == null) {
-            result = copied;
-        } else {
-            result = new BankOperation[base.length + copied.length];
-            result = unionAlgorithm(base, copied, result);
-        }
-        return result;
-    }
-
-    private BankOperation[] unionAlgorithm(BankOperation[] unionThis, BankOperation[] withThis, BankOperation[] andPutHere) {
-        for (int i = 0; i < andPutHere.length; i++) {
-            if (i < unionThis.length) {
-                andPutHere[i] = unionThis[i];
-            } else {
-                andPutHere[i] = withThis[i - unionThis.length];
-            }
-        }
-        return andPutHere;
-    }*/
-
     public void searchForCreditType(String moneyType) {
         System.out.printf("%-60s%s%s", "\n", "CREDIT SEARCH RESULT:", "\n");
         int flag = 0;
         int otherBanks = 0;
-        for (Bank element : banks) {
+        for (Bank element : this.banks) {
             if (element instanceof CreditBank) {
                 CreditBank creditBank = (CreditBank) element;
                 List<CreditType> creditTypes = creditBank.findCreditType(moneyType);
@@ -185,7 +84,7 @@ public class BankSystem extends Organization implements Findable {
                 otherBanks++;
             }
         }
-        if (flag == banks.size() - otherBanks) {
+        if (flag == this.banks.size() - otherBanks) {
             System.out.println("No credits found for your request.");
         }
     }
@@ -194,7 +93,7 @@ public class BankSystem extends Organization implements Findable {
         System.out.printf("%-60s%s%s", "\n", "CREDIT SEARCH RESULT:", "\n");
         int flag = 0;
         int otherBanks = 0;
-        for (Bank element : banks) {
+        for (Bank element : this.banks) {
             if (element instanceof CreditBank) {
                 CreditBank creditBank = (CreditBank) element;
                 List<CreditType> creditTypes = creditBank.findCreditType(moneyType, moneyAmount);
@@ -210,7 +109,7 @@ public class BankSystem extends Organization implements Findable {
                 otherBanks++;
             }
         }
-        if (flag == banks.size() - otherBanks) {
+        if (flag == this.banks.size() - otherBanks) {
             System.out.println("No credits found for your request.");
         }
     }
@@ -231,7 +130,7 @@ public class BankSystem extends Organization implements Findable {
         double eurTax = 0;
         double rubTax = 0;
         double bynTax = 0;
-        for (Bank element : banks) {
+        for (Bank element : this.banks) {
             if (element.getUsd().getAmount() > 0) {
                 usdTax += element.getUsd().getAmount() * TaxPayable.taxPercent;
                 element.getUsd().setAmount(element.getUsd().getAmount() - usdTax);

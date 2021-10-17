@@ -21,7 +21,7 @@ public abstract class Bank extends Organization implements Exchangable, Findable
 
     public Bank(String name, Address address, LocalDateTime foundedAt) {
         super(name, address, foundedAt);
-        count++;
+        this.count++;
     }
 
     public Bank(String nameOfBank, Address address, LocalDateTime foundedAt, Currency usd, Currency eur, Currency rub, Currency byn) {
@@ -76,34 +76,26 @@ public abstract class Bank extends Organization implements Exchangable, Findable
         if (employee == null) {
             return;
         }
-        if (employees == null) {
-            employees = new ArrayList<>();
-            employees.add(employee);
+        if (this.employees == null) {
+            this.employees = new ArrayList<>();
+            this.employees.add(employee);
         } else {
-            employees.add(employee);
+            this.employees.add(employee);
         }
     }
 
     public boolean removeEmployee(Employee employee) {
-        return employees.remove(employee);
+        return this.employees.remove(employee);
     }
 
     public Employee findEmployee(String firstName, String lastName) {
-        for (Employee employee : employees) {
+        for (Employee employee : this.employees) {
             if (employee.getFirstName().equals(firstName) && employee.getLastName().equals(lastName)) {
                 return employee;
             }
         }
         return null;
     }
-
-    /*public abstract void addOperation(BankOperation operation);*/
-
-    /*public abstract void removeOperation(BankOperation operation);*/
-
-    /*public abstract BankOperation[] findOperation(Client client);*/
-
-    /*public abstract BankOperation[] findOperation(Human human);*/
 
     @Override
     public Currency exchangeToUsd(Currency currency) {

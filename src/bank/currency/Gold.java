@@ -59,8 +59,8 @@ public class Gold extends Value {
 
     @Override
     public void setValue(Currency currency) {
-        if (currency.getType().equals(pricePerGram.getType())) {
-            this.weight = currency.getAmount() / pricePerGram.getAmount();
+        if (currency.getType().equals(this.pricePerGram.getType())) {
+            this.weight = currency.getAmount() / this.pricePerGram.getAmount();
         } else {
             throw new InvalidCurrencyTypeException("Runtime Exception: Invalid Currency Type.");
         }
@@ -70,9 +70,9 @@ public class Gold extends Value {
     public void copy(Value value) {
         if(value instanceof Gold) {
             Gold gold = (Gold) value;
-            weight = gold.getWeight();
-            pricePerGram = gold.getPricePerGram();
-            content = gold.getContent();
+            this.weight = gold.getWeight();
+            this.pricePerGram = gold.getPricePerGram();
+            this.content = gold.getContent();
         }
     }
 

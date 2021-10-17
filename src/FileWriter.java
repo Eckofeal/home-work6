@@ -6,19 +6,16 @@ import java.io.IOException;
 
 public class FileWriter implements AutoCloseable {
 
-    File file;
-    FileOutputStream fileOutputStream;
-    private static final Logger LOGGER;
+    private static final Logger LOGGER = LogManager.getLogger(FileWriter.class);
 
-    static {
-        LOGGER = LogManager.getLogger(FileWriter.class);
-    }
+    private File file;
+    private FileOutputStream fileOutputStream;
 
     public FileWriter() {
-        file = new File("./src/", "1.txt");
+        this.file = new File("./src/", "1.txt");
         try {
-            file.createNewFile();
-            fileOutputStream = new FileOutputStream(file, true);
+            this.file.createNewFile();
+            this.fileOutputStream = new FileOutputStream(file, true);
             LOGGER.info("File opened.");
         } catch (IOException exception) {
             LOGGER.error(exception.getMessage());
@@ -27,7 +24,7 @@ public class FileWriter implements AutoCloseable {
 
     public void write(String writeInFile) {
         try {
-            fileOutputStream.write(writeInFile.getBytes());
+            this.fileOutputStream.write(writeInFile.getBytes());
             LOGGER.info("Written in file.");
         } catch (IOException exception) {
             LOGGER.error(exception.getMessage());
@@ -38,7 +35,7 @@ public class FileWriter implements AutoCloseable {
     @Override
     public void close() {
         try {
-            fileOutputStream.close();
+            this.fileOutputStream.close();
             LOGGER.info("File closed.");
         } catch (IOException exception) {
             LOGGER.error(exception.getMessage());

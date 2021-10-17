@@ -16,9 +16,9 @@ public class SafeBox<T extends Value> implements Printable {
 
     public SafeBox(T deposit, int storageTimeInMonth) {
         this.deposit = deposit;
-        opened = LocalDate.now();
+        this.opened = LocalDate.now();
         this.storageTimeInMonth = storageTimeInMonth;
-        closed = LocalDate.now().plusMonths(storageTimeInMonth);
+        this.closed = LocalDate.now().plusMonths(storageTimeInMonth);
     }
 
     public T getDeposit() {

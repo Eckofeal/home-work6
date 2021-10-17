@@ -157,10 +157,10 @@ public class MainClass {
         }
 
         System.out.println("\n\n/////////////////////////////////FIRST////////////////////////////\n\n");
-        /*credit1.print();*/
+        credit1.print();
 
         System.out.println("\n\n/////////////////////////////////SECOND////////////////////////////\n\n");
-        /*creditBank1.print();*/
+        creditBank1.print();
         Address address1 = new Address("New York", "Park Avenue", 1);
         BankSystem bankSystem = new BankSystem("Unions", address1, LocalDateTime.of(1934, Month.MARCH, 8, 18, 0));
         bankSystem.addBank(creditBank1);
@@ -169,20 +169,20 @@ public class MainClass {
         bankSystem.addBank(mortgageBank2);
 
         System.out.println("\n\n/////////////////////////////////THIRD////////////////////////////\n\n");
-        /*bankSystem.searchForCreditType("USD");
+        bankSystem.searchForCreditType("USD");
         bankSystem.searchForCreditType(Currency.USD, 1500);
         bankSystem.searchForCreditType(Currency.EURO, 300);
         bankSystem.searchForCreditType("qwe");
         bankSystem.searchForCreditType("123", 50000);
-        bankSystem.searchForCreditType(Currency.USD, 1500000);*/
+        bankSystem.searchForCreditType(Currency.USD, 1500000);
 
         System.out.println("\n\n/////////////////////////////////FOURTH////////////////////////////\n\n");
-        /*BankSystem.exchangeRates();*/
+        BankSystem.exchangeRates();
 
         System.out.println("\n\n/////////////////////////////////FIFTH////////////////////////////\n\n");
-        /*bankSystem.searchForCreditType(Currency.BYN);
+        bankSystem.searchForCreditType(Currency.BYN);
         creditBank1.removeCreditType(creditType14);
-        bankSystem.searchForCreditType(Currency.BYN);*/
+        bankSystem.searchForCreditType(Currency.BYN);
 
         System.out.println("\n\n/////////////////////////////////SIXTH////////////////////////////\n\n");
         Work work4 = new Work("Microsoft", "Programming Engineer", 12500, Currency.USD);
@@ -242,16 +242,16 @@ public class MainClass {
             }
         }
         List<BankOperation> operations1 = mortgageBank1.find(human1);
-        /*printOperations(operations1);*/
+        printOperations(operations1);
 
         System.out.println("\n\n/////////////////////////////////SEVENTH////////////////////////////\n\n");
         creditBank1.add(credit4);
         List<BankOperation> operations2 = new ArrayList<>(creditBank1.getCredits());
-        /*printOperations(operations2);*/
+        printOperations(operations2);
 
         System.out.println("\n\n/////////////////////////////////EIGHTH////////////////////////////\n\n");
-        /*creditBank1.payTax();
-        bankSystem.payTax();*/
+        creditBank1.payTax();
+        bankSystem.payTax();
 
         System.out.println("\n\n/////////////////////////////////NINTH////////////////////////////\n\n");
         Work work7 = new Work("Oxford", "Professor", 3400, Currency.USD);
@@ -293,9 +293,9 @@ public class MainClass {
             }
         }
         List<BankOperation> operations3 = bankSystem.find(client7); //or .searchOperation(human2) it works the same
-        /*printOperations(operations3);*/
+        printOperations(operations3);
 
-        /*System.out.println("\n\n/////////////////////////////////TENTH////////////////////////////\n\n");
+        System.out.println("\n\n/////////////////////////////////TENTH////////////////////////////\n\n");
         System.out.println("PAY TAX METHOD: \n");
         payTax(creditBank1);
         payTax(mortgageBank1);
@@ -307,7 +307,7 @@ public class MainClass {
         printerMethod(client1);
         printerMethod(usd1);
         operations3 = bankSystem.find(client7);
-        printerMethod(operations3);
+        printOperations(operations3);
 
         System.out.println("\nEXCHANGE METHOD: \n");
         Currency currencyUsd = new Currency(200, Currency.USD);
@@ -319,7 +319,7 @@ public class MainClass {
         Currency currencyRub = new Currency(90000, Currency.RUB);
         Currency currencyEuro = exchangeToEuro(mortgageBank2, currencyRub);
         printerMethod(currencyRub);
-        printerMethod(currencyEuro);*/
+        printerMethod(currencyEuro);
 
         System.out.println("\n\n/////////////////////////////////ELEVENTH////////////////////////////\n\n");
         Work work8 = new Work("Dunkin Donates", "Cook", 3000, Currency.USD);
@@ -338,9 +338,9 @@ public class MainClass {
         Credit credit7 = new Credit(client8, creditType3, 9000);
 
         add(creditBank2, credit7);
-        /*printerMethod(find(creditBank2, client8));*/
+        printOperations(find(creditBank2, client8));
         remove(creditBank2, credit7);
-        /*printerMethod(find(creditBank2, client8));*/
+        printOperations(find(creditBank2, client8));
 
         Currency invalidCurrency = null;
         System.out.println("\n\n/////////////////////////////////TWELFTH////////////////////////////\n\n");

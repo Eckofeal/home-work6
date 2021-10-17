@@ -17,17 +17,17 @@ public class Contribution<T extends Value> implements Printable {
     public Contribution(T invested) {
         this.invested = invested;
         if (invested instanceof Gold) {
-            returned = (T) new Gold();
-            returned.copy(invested);
+            this.returned = (T) new Gold();
+            this.returned.copy(invested);
         } else if (invested instanceof Diamond) {
-            returned = (T) new Diamond();
-            returned.copy(invested);
+            this.returned = (T) new Diamond();
+            this.returned.copy(invested);
         } else if (invested instanceof Currency) {
-            returned = (T) new Currency();
-            returned.copy(invested);
+            this.returned = (T) new Currency();
+            this.returned.copy(invested);
         }
         double returnedAmount = invested.getValue().getAmount() + (invested.getValue().getAmount() * yearPercent * termInYears);
-        returned.setValue(new Currency(returnedAmount, invested.getValue().getType()));
+        this.returned.setValue(new Currency(returnedAmount, invested.getValue().getType()));
     }
 
     public T getInvested() {
@@ -71,7 +71,7 @@ public class Contribution<T extends Value> implements Printable {
             return false;
         }
         Contribution<T> contribution = (Contribution<T>) object;
-        return invested.equals(contribution.getInvested()) && returned.equals(contribution.getInvested());
+        return this.invested.equals(contribution.getInvested()) && this.returned.equals(contribution.getInvested());
     }
 
     @Override

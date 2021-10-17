@@ -45,32 +45,29 @@ public class CreditBank extends Bank {
         if (creditType == null) {
             return;
         }
-        if (creditTypes == null) {
-            creditTypes = new ArrayList<>();
+        if (this.creditTypes == null) {
+            this.creditTypes = new ArrayList<>();
         }
-        if (!creditTypes.contains(creditType)) {
-            creditTypes.add(creditType);
+        if (!this.creditTypes.contains(creditType)) {
+            this.creditTypes.add(creditType);
         } else {
             System.out.println("Credit type already exist.");
         }
     }
 
     public boolean removeCreditType(CreditType creditType) {
-        if (creditType == null || creditTypes == null || creditTypes.isEmpty()) {
+        if (creditType == null || this.creditTypes == null || this.creditTypes.isEmpty()) {
             return false;
         }
-        return creditTypes.remove(creditType);
+        return this.creditTypes.remove(creditType);
     }
 
     public List<CreditType> findCreditType(String moneyType) {
         List<CreditType> result = null;
-        /*CreditType[] result = null;*/
-        if (creditTypes != null && creditTypes.size() > 0) {
-            /*result = new CreditType[0];*/
+        if (this.creditTypes != null && this.creditTypes.size() > 0) {
             result = new ArrayList<>();
-            for (CreditType element : creditTypes) {
+            for (CreditType element : this.creditTypes) {
                 if (element.getMoneyType().equals(moneyType)) {
-                    /*result = addAlgorithm(result, element);*/
                     result.add(element);
                 }
             }
@@ -79,16 +76,13 @@ public class CreditBank extends Bank {
     }
 
     public List<CreditType> findCreditType(String moneyType, double moneyAmount) {
-        /*CreditType[] result = null;*/
         List<CreditType> result = null;
-        if (creditTypes != null && creditTypes.size() > 0) {
-            /*result = new CreditType[0];*/
+        if (this.creditTypes != null && this.creditTypes.size() > 0) {
             result = new ArrayList<>();
-            for (CreditType element : creditTypes) {
+            for (CreditType element : this.creditTypes) {
                 if (element.getMoneyType().equals(moneyType) &&
                         (moneyAmount >= element.getMinMoneyAmount() &&
                                 moneyAmount <= element.getMaxMoneyAmount())) {
-                    /* result = addAlgorithm(result, element);*/
                     result.add(element);
                 }
             }
@@ -96,272 +90,42 @@ public class CreditBank extends Bank {
         return result;
     }
 
-    /*private int indexOfCreditType(CreditType[] creditTypes, CreditType creditType) {
-        int result = -1;
-        if (creditTypes.length != 0) {
-            int flag = 0;
-            for (int i = 0; i < creditTypes.length; i++) {
-                flag++;
-                if (creditTypes[i].equals(creditType)) {
-                    result = i;
-                    return result;
-                }
-            }
-            if (flag == creditTypes.length) {
-                result = -1;
-            }
-        } else {
-            result = -1;
-        }
-        return result;
-    }*/
-
-    /*private CreditType[] addAlgorithm(CreditType[] creditTypes, CreditType creditType) {
-        if (creditType == null) {
-            return creditTypes;
-        }
-        CreditType[] result;
-        if (creditTypes == null) {
-            result = new CreditType[1];
-            result[0] = creditType;
-        } else {
-            result = new CreditType[creditTypes.length + 1];
-            result = copyThenInsert(creditTypes, result, creditType);
-        }
-        return result;
-    }*/
-
-    /*private CreditType[] removeAlgorithm(CreditType[] creditTypes, CreditType creditType) {
-        CreditType[] result = new CreditType[creditTypes.length - 1];
-        int index = indexOfCreditType(creditTypes, creditType);
-        for (int i = 0, j = 0; i < creditTypes.length; i++, j++) {
-            if (i == index) {
-                j--;
-            } else {
-                result[j] = creditTypes[i];
-            }
-        }
-        return result;
-    }*/
-
-    /*private CreditType[] copyThenInsert(CreditType[] copyThis, CreditType[] intoThis, CreditType thenInsertThis) {
-        for (int i = 0; i < intoThis.length; i++) {
-            if (i != intoThis.length - 1) {
-                intoThis[i] = copyThis[i];
-            } else {
-                intoThis[i] = thenInsertThis;
-            }
-        }
-        return intoThis;
-    }*/
-
-    /*public void addCredit(Credit credit) {
-        if (credits != null) {
-            if (indexOfCredit(credits, credit) == -1) {
-                credits = addAlgorithm(credits, credit);
-            } else {
-                System.out.println("Credit already exist.");
-            }
-        } else {
-            credits = addAlgorithm(credits, credit);
-        }
-    }
-
-    public void removeCredit(Credit credit) {
-        if (credit == null || credits == null || credits.length == 0) {
-            return;
-        }
-        credits = removeAlgorithm(credits, credit);
-    }
-
-    public Credit[] findCredit(Client client) {
-        Credit[] result = null;
-        if (client == null) {
-            return null;
-        }
-        if (credits != null && credits.length > 0) {
-            result = new Credit[0];
-            for (Credit element : credits) {
-                if (element.getClient().getFirstName() == client.getFirstName() &&
-                        element.getClient().getLastName() == client.getLastName()) {
-                    result = addAlgorithm(result, element);
-                }
-            }
-        }
-        return result;
-    }
-
-    public Credit[] findCredit(CreditType creditType) {
-        Credit[] result = null;
-        if (creditType == null) {
-            return null;
-        }
-        if (credits != null && credits.length > 0) {
-            result = new Credit[0];
-            for (Credit element : credits) {
-                if (element.getCreditType().getCreditName() == creditType.getCreditName()) {
-                    result = addAlgorithm(result, element);
-                }
-            }
-        }
-        return result;
-    }
-
-    private int indexOfCredit(Credit[] credits, Credit credit) {
-        int result = -1;
-        if (credits.length != 0) {
-            int flag = 0;
-            for (int i = 0; i < credits.length; i++) {
-                flag++;
-                if (credits[i].equals(credit)) {
-                    result = i;
-                    return result;
-                }
-            }
-            if (flag == credits.length) {
-                result = -1;
-            }
-        } else {
-            result = -1;
-        }
-        return result;
-    }
-
-    private Credit[] addAlgorithm(Credit[] credits, Credit credit) {
-        if (credit == null) {
-            return credits;
-        }
-        Credit[] result;
-        if (credits == null) {
-            result = new Credit[1];
-            result[0] = credit;
-        } else {
-            result = new Credit[credits.length + 1];
-            result = copyThenInsert(credits, result, credit);
-        }
-        return result;
-    }
-
-    private Credit[] removeAlgorithm(Credit[] credits, Credit credit) {
-        Credit[] result = new Credit[credits.length - 1];
-        int index = indexOfCredit(credits, credit);
-        for (int i = 0, j = 0; i < credits.length; i++, j++) {
-            if (i == index) {
-                j--;
-            } else {
-                result[j] = credits[i];
-            }
-        }
-        return result;
-    }
-
-    private Credit[] copyThenInsert(Credit[] copyThis, Credit[] intoThis, Credit thenInsertThis) {
-        for (int i = 0; i < intoThis.length; i++) {
-            if (i != intoThis.length - 1) {
-                intoThis[i] = copyThis[i];
-            } else {
-                intoThis[i] = thenInsertThis;
-            }
-        }
-        return intoThis;
-    }*/
-
-    /*@Override //POLYMORPH
-    public BankOperation[] findOperation(Client client) {
-        BankOperation[] result = null;
-        if (client == null) {
-            return null;
-        }
-        if (credits != null && credits.length > 0) {
-            result = new BankOperation[0];
-            for (BankOperation element : credits) {
-                if (element.getClient().getFirstName() == client.getFirstName() &&
-                        element.getClient().getLastName() == client.getLastName()) {
-                    result = addAlgorithm(result, element);
-                }
-            }
-        }
-        return result;
-    }*/
-
-    /*@Override //POLYMORPH
-    public void addOperation(BankOperation operation) {
-        if (credits != null) {
-            if (indexOfOperation(credits, operation) == -1) {
-                credits = transform(addAlgorithm(credits, operation));
-            } else {
-                System.out.println("Credit already exist.");
-            }
-        } else {
-            credits = transform(addAlgorithm(credits, operation));
-        }
-    }*/
-
-    /*@Override //POLYMORPH
-    public void removeOperation(BankOperation operation) {
-        if (operation == null || credits == null || credits.length == 0) {
-            return;
-        }
-        credits = transform(addAlgorithm(credits, operation));
-    }*/
-
-    /*@Override //POLYMORPH
-    public BankOperation[] findOperation(Human human) {
-        BankOperation[] result = null;
-        if (human == null) {
-            return null;
-        }
-        if (credits != null && credits.length > 0) {
-            result = new BankOperation[0];
-            for (BankOperation element : credits) {
-                if (element.getClient().getFirstName() == human.getFirstName() &&
-                        element.getClient().getLastName() == human.getLastName()) {
-                    result = addAlgorithm(result, element);
-                }
-            }
-        }
-        return result;
-    }*/
-
     @Override
     public void add(BankOperation operation) {
         if (operation == null) {
             return;
         }
-        if (credits != null) {
-            if (!credits.contains(operation)) {
-                credits.add((Credit) operation);
+        if (this.credits != null) {
+            if (!this.credits.contains(operation)) {
+                this.credits.add((Credit) operation);
             } else {
                 System.out.println("Credit already exist.");
             }
         } else {
-            credits = new ArrayList<>();
-            credits.add((Credit) operation);
+            this.credits = new ArrayList<>();
+            this.credits.add((Credit) operation);
         }
     }
 
     @Override
     public boolean remove(BankOperation operation) {
-        if (operation == null || credits == null || !credits.isEmpty()) {
+        if (operation == null || this.credits == null || !this.credits.isEmpty()) {
             return false;
         }
-        return credits.remove((Credit) operation);
+        return this.credits.remove((Credit) operation);
     }
 
     @Override
     public List<BankOperation> find(Human human) {
-        /*BankOperation[] result = null;*/
         List<BankOperation> result = null;
         if (human == null) {
             return null;
         }
-        if (credits != null && credits.size() > 0) {
-            /*result = new BankOperation[0];*/
+        if (this.credits != null && this.credits.size() > 0) {
             result = new ArrayList<>();
-            for (BankOperation element : credits) {
+            for (BankOperation element : this.credits) {
                 if (element.getClient().getFirstName().equals(human.getFirstName()) &&
                         element.getClient().getLastName().equals(human.getLastName())) {
-                    /*result = addAlgorithm(result, element);*/
                     result.add(element);
                 }
             }
@@ -468,7 +232,7 @@ public class CreditBank extends Bank {
         System.out.println(super.getName() + ", located on " + super.getAddress().getCity() +
                 ", " + super.getAddress().getStreet() + " " + super.getAddress().getHouseNumber() + " street, founded in " +
                 super.getFoundedAt().getDayOfMonth() + "." + super.getFoundedAt().getMonth() + "." + super.getFoundedAt().getYear());
-        System.out.println("Number of credit types in bank: " + creditTypes.size());
+        System.out.println("Number of credit types in bank: " + this.creditTypes.size());
         System.out.println("Number of credits issued: " + credits.size());
         System.out.println("Bank capital:");
         System.out.println(super.getUsd().getAmount() + " " + Currency.USD);
