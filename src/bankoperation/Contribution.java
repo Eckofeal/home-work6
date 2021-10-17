@@ -1,0 +1,83 @@
+package bankoperation;
+
+import bank.currency.Currency;
+import bank.currency.Diamond;
+import bank.currency.Gold;
+import bank.currency.Value;
+import print.Printable;
+import java.util.Objects;
+
+public class Contribution<T extends Value> implements Printable {
+
+    private T invested;
+    private final double yearPercent = 0.12;
+    private final int termInYears = 2;
+    private T returned;
+
+    public Contribution(T invested) {
+        this.invested = invested;
+        if (invested instanceof Gold) {
+            returned = (T) new Gold();
+            returned.copy(invested);
+        } else if (invested instanceof Diamond) {
+            returned = (T) new Diamond();
+            returned.copy(invested);
+        } else if (invested instanceof Currency) {
+            returned = (T) new Currency();
+            returned.copy(invested);
+        }
+        double returnedAmount = invested.getValue().getAmount() + (invested.getValue().getAmount() * yearPercent * termInYears);
+        returned.setValue(new Currency(returnedAmount, invested.getValue().getType()));
+    }
+
+    public T getInvested() {
+        return invested;
+    }
+
+    public double getYearPercent() {
+        return yearPercent;
+    }
+
+    public int getTermInYears() {
+        return termInYears;
+    }
+
+    public T getReturned() {
+        return returned;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("FUNDS INVESTED:");
+        invested.print();
+        System.out.println("\nTerm of contribution: " + termInYears + " years.");
+        System.out.println("Year percent: " + (yearPercent * 100) + "%.");
+        System.out.println("\nFUNDS WILL BE RETURNED:");
+        returned.print();
+    }
+
+    @Override
+    public String toString() {
+        return "Class Contribution [invested = " + invested + ", yearPercent = " +
+                yearPercent + ", termInYears = " + termInYears + ", returned" + returned + "]";
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+        Contribution<T> contribution = (Contribution<T>) object;
+        return invested.equals(contribution.getInvested()) && returned.equals(contribution.getInvested())
+                && yearPercent == contribution.yearPercent && termInYears == contribution.termInYears;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(invested, returned, yearPercent, termInYears);
+    }
+
+}
