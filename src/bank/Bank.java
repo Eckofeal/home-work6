@@ -72,7 +72,7 @@ public abstract class Bank extends Organization implements Exchangable, Findable
         return employees;
     }
 
-    public void addEmployee(Employee employee) {
+    /*public void addEmployee(Employee employee) {
         if (employee == null) {
             return;
         }
@@ -82,11 +82,11 @@ public abstract class Bank extends Organization implements Exchangable, Findable
         } else {
             this.employees.add(employee);
         }
-    }
+    }*/
 
-    public boolean removeEmployee(Employee employee) {
+    /*public boolean removeEmployee(Employee employee) {
         return this.employees.remove(employee);
-    }
+    }*/
 
     public Employee findEmployee(String firstName, String lastName) {
         for (Employee employee : this.employees) {

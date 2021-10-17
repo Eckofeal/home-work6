@@ -412,11 +412,19 @@ public class MainClass {
             Employee employee3 = new Employee("Max", "Pax",
                     LocalDateTime.of(1995, Month.NOVEMBER, 14, 18, 6),
                     "Broker", new Currency(20000, Currency.USD));
-            creditBank1.addEmployee(employee1);
+
+            List<Employee> employeeList = new ArrayList<>();
+            employeeList.add(employee1);
+            employeeList.add(employee2);
+            employeeList.add(employee3);
+            creditBank1.setEmployees(employeeList);
+            /*creditBank1.addEmployee(employee1);
             creditBank1.addEmployee(employee2);
-            creditBank1.addEmployee(employee3);
+            creditBank1.addEmployee(employee3);*/
             Employee searchedEmployee = creditBank1.findEmployee("Max", "Pax");
-            creditBank1.removeEmployee(searchedEmployee);
+            employeeList.remove(searchedEmployee);
+            creditBank1.setEmployees(employeeList);
+            /*creditBank1.removeEmployee(searchedEmployee);*/
             for (Employee employee : creditBank1.getEmployees()) {
                 employee.print();
                 System.out.println();
